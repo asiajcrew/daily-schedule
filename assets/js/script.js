@@ -1,6 +1,10 @@
-var tasks = {};
+// display the current date within the jumbotron
+var date = document.getElementById("currentDay");
+date.textContent = moment().format("dddd, MMMM Do YYYY");
 
-// get & set task to local storage
+// get & set task to local storage; assign styling to tasks to indicate past, present, or future:
+
+// get local storage
 $(document).ready(function() {
   for (i = 9; i < 18; i++) {
     var currentHour = "" + i + "";
@@ -9,7 +13,24 @@ $(document).ready(function() {
       document.getElementById(currentHour).textContent = currentHourText;
       console.log(currentHourText);
     }
+
+    // assign styling to tasks to indicate past, present, or future:
+
+    // get current time from task element
+    var hourCheck = (moment().hour())
+    // apply new class if task is in the past or present
+    if (currentHour <= hourCheck) {
+      if (currentHour = hourCheck) {
+        document.getElementById(currentHour).classList.add("present");
+      } else {
+        document.getElementById(currentHour).classList.add("past");
+      }
+    // apply new class if task is in the future
+    } else {
+        document.getElementById(currentHour).classList.add("future");
+      }
   };
+  // set local storage
   // select the save button
     var saveButton = $(".saveBtn")
     // add event listener
@@ -22,22 +43,3 @@ $(document).ready(function() {
         localStorage.setItem(hour, userTask);
     });
 });
-
-// pull tasks from local storage
-
-// display the current date
-var date = document.getElementById("currentDay");
-date.textContent = moment().format("dddd, MMMM Do YYYY");
-
-// check if current time is in the past, present, or future
-
-  // get date from task element
-
-  // remove any old classes from element
-
-  // apply new class if task is over due date
-//   if
-//   } else if
-// };
-
-  // loop over object properties
